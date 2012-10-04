@@ -1,0 +1,3 @@
+NAME=hydra
+
+SRCS=hydra.cpp
