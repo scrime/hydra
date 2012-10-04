@@ -1,0 +1,170 @@
+#N canvas 21 42 881 607 10;
+#X obj 78 139 hydra;
+#X msg 29 106 poll 5;
+#X msg 78 106 nopoll;
+#X obj 78 188 route 0 1;
+#X obj 78 214 route 0 1;
+#X obj 78 249 zl slice 3;
+#X obj 34 333 unpack f f f;
+#X obj 34 415 pscale -1000 1000 0 1;
+#X obj 68 393 pscale -1000 1000 0 1;
+#X obj 103 371 pscale -1000 1000 0 1;
+#X obj 34 444 vsl 30 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 68 444 vsl 30 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 103 444 vsl 30 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
+-1 -1 0 1;
+#X obj 261 319 zl slice 9;
+#X obj 371 360 zl slice 4;
+#X obj 516 408 zl slice 3;
+#X obj 516 447 unpack f f f;
+#X floatatom 497 483 5 0 0 0 - - -;
+#X floatatom 532 483 5 0 0 0 - - -;
+#X floatatom 585 482 5 0 0 0 - - -;
+#X floatatom 334 457 5 0 0 0 - - -;
+#X floatatom 369 457 5 0 0 0 - - -;
+#X floatatom 404 457 5 0 0 0 - - -;
+#X obj 350 421 unpack f f f f;
+#X floatatom 439 457 5 0 0 0 - - -;
+#X obj 172 514 zl slice 3;
+#X obj 172 535 unpack f f f;
+#X floatatom 172 557 5 0 0 0 - - -;
+#X floatatom 206 557 5 0 0 0 - - -;
+#X floatatom 241 557 5 0 0 0 - - -;
+#X obj 279 514 zl slice 3;
+#X obj 279 535 unpack f f f;
+#X floatatom 279 557 5 0 0 0 - - -;
+#X floatatom 313 557 5 0 0 0 - - -;
+#X floatatom 348 557 5 0 0 0 - - -;
+#X obj 386 514 zl slice 3;
+#X obj 386 535 unpack f f f;
+#X floatatom 386 557 5 0 0 0 - - -;
+#X floatatom 420 557 5 0 0 0 - - -;
+#X floatatom 455 557 5 0 0 0 - - -;
+#X text 286 493 rotation;
+#X text 314 400 rotation in quaternion format;
+#X text 37 579 position x y z;
+#X text 491 501 joystick x y;
+#X text 581 501 trigger;
+#X text 141 188 < 0 is first base (you can connect 2 bases \, 1 is
+2nd one);
+#X text 140 214 < 0 is left controller \, 1 is right one;
+#X obj 15 14 cnv 15 850 60 empty empty hydra 7 12 0 20 -233017 -66577
+0;
+#X obj 736 536 % 2;
+#X text 717 434 buttons;
+#X text 477 122 http://grrrr.org/research/software/flext;
+#X text 477 107 this object has been built with flext :;
+#X text 553 55 joseph larralde 2012 - http://www.josephlarralde.fr
+;
+#X obj 736 515 >> 3;
+#X obj 767 536 % 2;
+#X obj 798 536 % 2;
+#X obj 829 536 % 2;
+#X obj 643 536 % 2;
+#X obj 674 536 % 2;
+#X obj 705 536 % 2;
+#X obj 643 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 674 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 705 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 736 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 767 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 798 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 829 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 643 515 >> 0;
+#X obj 674 515 >> 5;
+#X obj 705 515 >> 6;
+#X obj 767 515 >> 4;
+#X obj 798 515 >> 7;
+#X obj 829 515 >> 8;
+#X floatatom 803 451 5 0 0 0 - - -;
+#X obj 688 452 t f f f f f f f f;
+#X text 477 230 ATTENTION : do not poll multiple hydra objects or Pd
+will crash ! You can create any of them \, but once one has been polled
+\, don't poll any other one (because of concurrent accesses to sixense
+library);
+#X text 477 302 To get this object working \, you must first install
+the SDK from sixense :;
+#N canvas 417 201 476 244 install-instructions-mac 0;
+#X text 24 14 sixense SDK is downloadable here : http://sixense.com/developers
+;
+#X text 24 51 to install it \, unzip the downloaded sixenseSDK_linux_OSX.zip
+file \, then open a terminal and cd to the newly created sixenseSDK_linux_OSX
+folder \, then to the install subfolder \, then type :;
+#X text 25 110 python install.py;
+#X text 24 133 when asked \, be sure to select "osx 32 bits" (choice
+#5). this script will install sixense libraries in /usr/local/lib which
+must be there in order for the hydra object to work.;
+#X text 25 192 that's it !;
+#X restore 480 335 pd install-instructions-mac;
+#X text 21 36 wrapper for sixense's hydra gaming device driver;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 5 1 13 0;
+#X connect 6 0 7 0;
+#X connect 6 1 8 0;
+#X connect 6 2 9 0;
+#X connect 7 0 10 0;
+#X connect 8 0 11 0;
+#X connect 9 0 12 0;
+#X connect 13 0 25 0;
+#X connect 13 1 14 0;
+#X connect 14 0 23 0;
+#X connect 14 1 15 0;
+#X connect 15 0 16 0;
+#X connect 15 1 74 0;
+#X connect 16 0 17 0;
+#X connect 16 1 18 0;
+#X connect 16 2 19 0;
+#X connect 23 0 20 0;
+#X connect 23 1 21 0;
+#X connect 23 2 22 0;
+#X connect 23 3 24 0;
+#X connect 25 0 26 0;
+#X connect 25 1 30 0;
+#X connect 26 0 27 0;
+#X connect 26 1 28 0;
+#X connect 26 2 29 0;
+#X connect 30 0 31 0;
+#X connect 30 1 35 0;
+#X connect 31 0 32 0;
+#X connect 31 1 33 0;
+#X connect 31 2 34 0;
+#X connect 35 0 36 0;
+#X connect 36 0 37 0;
+#X connect 36 1 38 0;
+#X connect 36 2 39 0;
+#X connect 48 0 63 0;
+#X connect 53 0 48 0;
+#X connect 54 0 64 0;
+#X connect 55 0 65 0;
+#X connect 56 0 66 0;
+#X connect 57 0 60 0;
+#X connect 58 0 61 0;
+#X connect 59 0 62 0;
+#X connect 67 0 57 0;
+#X connect 68 0 58 0;
+#X connect 69 0 59 0;
+#X connect 70 0 54 0;
+#X connect 71 0 55 0;
+#X connect 72 0 56 0;
+#X connect 74 0 67 0;
+#X connect 74 1 68 0;
+#X connect 74 2 69 0;
+#X connect 74 3 53 0;
+#X connect 74 4 70 0;
+#X connect 74 5 71 0;
+#X connect 74 6 72 0;
+#X connect 74 7 73 0;
